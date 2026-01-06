@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ticTacToe.com</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- sounds -->
+     <audio src="music.mp3" id="gameSound"></audio>
+     <audio src="ting.mp3" id="clickSound"></audio>
+     <audio src="gameWin.mp3" id="gameWinSound"></audio>
+     <audio src="gameOver.mp3" id="gameOverSound"></audio>
+
+    <nav class="navBar">
+      <div class="title">Tic Tac Toe</div>
+    </nav>
+
+    <div class="container">
+      <div class="boxes pop">
+        <button class="btn b-l b-t"></button>
+        <button class="btn b-t"></button>
+        <button class="btn b-t b-r"></button>
+        <button class="btn b-l"></button>
+        <button class="btn"></button>
+        <button class="btn b-r"></button>
+        <button class="btn b-l b-b"></button>
+        <button class="btn b-b"></button>
+        <button class="btn b-b b-r"></button>
+      </div>
+
+      <div class="gameInfo tempHide pop">
+        <div class="info">
+          <p id="gameResp"></p>
+          <img src="excited.gif" alt="win" class="dance hide" />
+          <img src="music.png" alt="music" class="music" />
+        </div>
+
+        <button id="newGame" class="hide">New Game</button>
+        <button id="resetGame" class="">Reset Game</button>
+      </div>
+    </div>
+    <footer>
+      <div class="copyRight">&copy; By Ind games</div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
