@@ -164,10 +164,9 @@ footer {
 /* media querys */
 @media (max-width: 300px) {
   .container {
-    height: 85vmax;
+    height: 180vmin;
     width: 100vw;
     display: flex;
-    gap: 7vmax;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -175,14 +174,14 @@ footer {
 
   #resetGame {
     height: 11vmin;
-    width: 52vmin;
+    width: 51vmin;
     font-size: 6vmin;
     border-radius: 7vmin;
   }
 
   #newGame {
     height: 11vmin;
-    width: 52vmin;
+    width: 51vmin;
     font-size: 6vmin;
     border-radius: 7vmin;
   }
@@ -213,13 +212,17 @@ footer {
   }
 
   #resetGame {
-    height: 9vmin;
-    font-size: 5vmin;
+    height: 10vmin;
+    width: 51vmin;
+    font-size: 5.5vmin;
+    border-radius: 7vmin;
   }
 
   #newGame {
-    height: 9vmin;
-    font-size: 5vmin;
+    height: 10vmin;
+    width: 51vmin;
+    font-size: 5.5vmin;
+    border-radius: 7vmin;
   }
 
   #gameResp {
@@ -248,25 +251,41 @@ footer {
     align-items: center;
   }
   #resetGame {
-    height: 6.5vmin;
-    width: 36vmin;
-    font-size: 3.5vmin;
+    height: 8vmin;
+    width: 40vmin;
+    font-size: 4.5vmin;
     border-radius: 5vmin;
-    cursor: pointer;
+  }
+  #newGame {
+    height: 8vmin;
+    width: 40vmin;
+    font-size: 4.5vmin;
+    border-radius: 5vmin;
   }
 }
 
 @media (max-width: 820px) and (min-width: 500px) {
-  .navBar{
+  .navBar {
     height: 12vmin;
   }
   .container {
-    height: 95vmin;
+    height: 92vmin;
     width: 100vw;
     display: flex;
+    gap: 4vmin;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 7vmin;
+  }
+
+  #resetGame {
+    height: 7.5vmin;
+    font-size: 4.3vmin;
+  }
+  #newGame {
+    height: 7.5vmin;
+    font-size: 4.3vmin;
   }
 
   .boxes {
