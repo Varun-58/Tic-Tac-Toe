@@ -12,19 +12,25 @@ let resetBtn = document.getElementById("resetGame"); //resetBtn
 let newGameBtn = document.getElementById("newGame"); //newGameBtn
 let gameText = document.querySelector("#gameResp"); //responce text
 let boxes = document.querySelector(".boxes"); //left box
+let mobLine = document.querySelector(".line"); //moving line
 let info = document.querySelector(".gameInfo"); //win loose
+let turnText = document.querySelector(".turn"); //turn text
 
 //addMusicLogic
 gameDance.addEventListener("click", () => {
-  clickMusic.currentTime = 0;
-  clickMusic.play();
-  if (gameMusic.paused) {
-    gameMusic.play(); // yahin allowed hota hai
-  } else {
-    gameMusic.pause();
-  }
+  gameDance.classList.remove("bounce");
+  gameDance.offsetWidth; //magic line
+  gameDance.classList.add("bounce");
+  toggleGameMusic();
 });
 gameMuLogo.addEventListener("click", () => {
+  gameMuLogo.classList.remove("bounce");
+  gameMuLogo.offsetWidth;
+  gameMuLogo.classList.add("bounce");
+  toggleGameMusic();
+});
+
+let toggleGameMusic = () => {
   clickMusic.currentTime = 0;
   clickMusic.play();
   if (gameMusic.paused) {
@@ -32,7 +38,8 @@ gameMuLogo.addEventListener("click", () => {
   } else {
     gameMusic.pause();
   }
-});
+};
+
 //reset and new game btn sound
 resetBtn.addEventListener("click", () => {
   clickMusic.currentTime = 0;
@@ -42,6 +49,7 @@ newGameBtn.addEventListener("click", () => {
   clickMusic.currentTime = 0;
   clickMusic.play();
 });
+
 //gameBtn sound
 btn.forEach((box) => {
   box.addEventListener("click", () => {
@@ -52,14 +60,14 @@ btn.forEach((box) => {
 
 //game logic declerations
 let winningPatterns = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
+  [0, 1, 2, 0, 10, 0],
+  [3, 4, 5, 0, 30, 0],
+  [6, 7, 8, 0, 50, 0],
+  [0, 3, 6, 10, 0, 90],
+  [1, 4, 7, 30, 0, 90],
+  [2, 5, 8, 50, 0, 90],
+  [0, 4, 8, 9, 9, 45],
+  [2, 4, 6, 51, 9, 135],
 ];
 let turnO = true;
 let win = false;
@@ -71,13 +79,17 @@ for (let box of btn) {
     if (turnO) {
       box.classList.remove("o-text");
       box.classList.add("x-text");
+
       box.innerText = "X";
       turnO = false;
+      turnText.innerText = "O's turn";
     } else {
       box.classList.remove("x-text");
       box.classList.add("o-text");
+
       box.innerText = "O";
       turnO = true;
+      turnText.innerText = "X's turn";
     }
     box.disabled = true;
     checkWinner();
@@ -94,13 +106,24 @@ let checkWinner = () => {
 
     if (pos01 != "" && pos02 != "" && pos03 != "") {
       if (pos01 === pos02 && pos02 === pos03) {
+        mobLine.style.transform = `translate(${pattern[3]}vmin, ${pattern[4]}vmin) rotate(${pattern[5]}deg)`;
+        mobLine.style.width = "100%";
+
+        gameText.classList.remove("hide");
         gameText.innerText = `${pos01} win's 🎉`;
+        gameText.classList.add("pop");
+
         gameWinSound.play();
         dissableBtn();
         toogleBtn();
         danceBtn();
-        win = true;
         screenHandling();
+        turnText.classList.add("hide");
+        pos01 === "X"
+          ? mobLine.classList.add("lineShadowBlue")
+          : mobLine.classList.add("lineShadowRed");
+
+        win = true;
         return;
       }
     }
@@ -127,11 +150,16 @@ const danceBtn = () => {
 
 //draw check
 let checkDraw = () => {
+  if (win) {
+    return;
+  }
+
   for (let box of btn) {
     if (box.innerText === "") {
       return;
     }
   }
+  gameText.classList.remove("hide");
   gameText.innerText = `Draw😐`;
   gameText.classList.add("pop");
   gameMuLogo.classList.add("hide");
@@ -140,26 +168,38 @@ let checkDraw = () => {
   resetBtn.classList.add("hide");
   newGameBtn.classList.remove("hide");
   newGameBtn.classList.add("pop");
+  turnText.classList.add("hide");
   gameOverSound.play();
   draw = true;
   screenHandling();
 };
 
+//container handel
+let screenHandling = () => {};
+
 //reset and newGame btn
 resetBtn.addEventListener("click", () => {
+  turnText.classList.remove("hide");
+  turnText.innerText = "";
   turnO = true;
+  win = false;
+  draw = false;
   clearBtns();
+  resetLine();
+  btnBounce();
 });
-let clearBtns = () => {
-  for (let box of btn) {
-    box.disabled = false;
-    box.innerText = "";
-  }
-};
 
 newGameBtn.addEventListener("click", () => {
   turnO = true;
+  win = false;
+  draw = false;
+
   clearBtns();
+  resetLine();
+  mobLine.classList.remove("lineShadowBlue");
+  mobLine.classList.remove("lineShadowRed");
+  turnText.classList.remove("hide");
+  turnText.innerText = "";
   newGameBtn.classList.add("hide");
   resetBtn.classList.remove("hide");
   resetBtn.classList.add("pop");
@@ -169,22 +209,46 @@ newGameBtn.addEventListener("click", () => {
   gameMuLogo.classList.add("pop");
 });
 
-//media query
-let screenHandling = () => {
-  if (window.innerWidth <= 1024 && window.innerWidth >= 300) {
-    if (win === true || draw === true) {
-      boxes.classList.add("tempHide");
-      info.classList.remove("tempHide");
-      gameText.classList.remove("hide");
-      gameText.classList.add("pop");
-      gameDance.classList.add("pop");
-      newGameBtn.classList.add("pop");
-    }
+let clearBtns = () => {
+  for (let box of btn) {
+    box.disabled = false;
+    box.innerText = "";
   }
-
-  newGameBtn.addEventListener("click", () => {
-    // info.classList.add("tempHide");
-    boxes.classList.remove("tempHide");
-    boxes.classList.add("pop");
-  });
 };
+
+function resetLine() {
+  mobLine.style.transition = "none"; //transition band
+  mobLine.style.width = "0vmin";
+
+  mobLine.offsetWidth; //magic line
+  mobLine.style.transition = "width 1s ease-in-out";
+}
+
+//bounce function
+let btnBounce = () => {
+  resetBtn.classList.remove("bounce");
+  resetBtn.offsetWidth;
+  resetBtn.classList.add("bounce");
+};
+
+//Dark mode
+let themeBtn = document.querySelector("#themeBtn");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  let mode = document.body.classList.contains("dark") ? "dark" : "light";
+
+  localStorage.setItem("theme", mode);
+
+  themeBtn.classList.remove("bounce");
+  themeBtn.offsetWidth;
+  themeBtn.classList.add("bounce");
+
+  clickMusic.currentTime = 0;
+  clickMusic.play();
+});
