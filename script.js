@@ -69,12 +69,14 @@ let draw = false;
 for (let box of btn) {
   box.addEventListener("click", () => {
     if (turnO) {
+      box.classList.remove("o-text");
+      box.classList.add("x-text");
       box.innerText = "X";
-      box.style.color = "red";
       turnO = false;
     } else {
+      box.classList.remove("x-text");
+      box.classList.add("o-text");
       box.innerText = "O";
-      box.style.color = "blue";
       turnO = true;
     }
     box.disabled = true;
@@ -181,7 +183,7 @@ let screenHandling = () => {
   }
 
   newGameBtn.addEventListener("click", () => {
-    info.classList.add("tempHide");
+    // info.classList.add("tempHide");
     boxes.classList.remove("tempHide");
     boxes.classList.add("pop");
   });
