@@ -16,6 +16,8 @@ let info = document.querySelector(".gameInfo"); //win loose
 
 //addMusicLogic
 gameDance.addEventListener("click", () => {
+  clickMusic.currentTime = 0;
+  clickMusic.play();
   if (gameMusic.paused) {
     gameMusic.play(); // yahin allowed hota hai
   } else {
@@ -23,6 +25,8 @@ gameDance.addEventListener("click", () => {
   }
 });
 gameMuLogo.addEventListener("click", () => {
+  clickMusic.currentTime = 0;
+  clickMusic.play();
   if (gameMusic.paused) {
     gameMusic.play(); // yahin allowed hota hai
   } else {
@@ -31,22 +35,17 @@ gameMuLogo.addEventListener("click", () => {
 });
 //reset and new game btn sound
 resetBtn.addEventListener("click", () => {
-  if (clickMusic.paused) {
-    clickMusic.play(); // yahin allowed hota hai
-  } else {
-    clickMusic.pause();
-  }
+  clickMusic.currentTime = 0;
+  clickMusic.play();
 });
 newGameBtn.addEventListener("click", () => {
-  if (clickMusic.paused) {
-    clickMusic.play(); // yahin allowed hota hai
-  } else {
-    clickMusic.pause();
-  }
+  clickMusic.currentTime = 0;
+  clickMusic.play();
 });
 //gameBtn sound
 btn.forEach((box) => {
   box.addEventListener("click", () => {
+    clickMusic.currentTime = 0;
     clickMusic.play();
   });
 });
