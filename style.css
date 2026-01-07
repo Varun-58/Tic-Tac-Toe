@@ -8,24 +8,31 @@
 
 body {
   width: 100vw;
-  /* background-color: blanchedalmond; */
 }
 
-.hide{
+.hide {
   display: none;
+}
+
+.x-text {
+  color: #1d4ed8;
+  text-shadow: 0.3vmin 0.3vmin 0.6vmin rgba(0, 0, 0, 0.5);
+}
+
+.o-text {
+  color: #b91c1c;
+  text-shadow: 0.3vmin 0.3vmin 0.6vmin rgba(0, 0, 0, 0.5);
 }
 
 /* nav */
 .navBar {
   height: 16vmin;
   width: 100vw;
-  /* background-color: #857868; */
 }
 
 .title {
   height: 12vmin;
   width: 100vw;
-  /* background-color: pink; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +44,6 @@ body {
 .container {
   height: 84vmin;
   width: 100vw;
-  /* background-color: #dafc00; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -47,7 +53,6 @@ body {
 .boxes {
   height: 60vmin;
   width: 60vmin;
-  /* background-color: #857868; */
   display: grid;
   grid-template-columns: repeat(3, 20vmin);
 }
@@ -57,9 +62,12 @@ body {
   width: 20vmin;
   font-size: 13vmin;
   background-color: transparent;
-  /* border-radius: 2vmin; */
   border: 2px solid black;
   cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .b-t {
@@ -79,7 +87,6 @@ body {
 .gameInfo {
   height: 60vmin;
   width: 60vmin;
-  /* background-color: #f1c58e; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,7 +96,6 @@ body {
 .info {
   height: 20vmin;
   width: 50vmin;
-  /* background-color: red; */
   display: flex;
   gap: 2vmin;
   justify-content: center;
@@ -142,7 +148,6 @@ body {
 footer {
   height: 40vmin;
   width: 100vw;
-  /* background-color: yellowgreen; */
   display: flex;
   justify-content: center;
 }
@@ -153,42 +158,29 @@ footer {
   display: flex;
   font-size: 3.5vmin;
   justify-content: center;
-  /* background-color: red; */
   margin-top: auto;
 }
 
 /* media querys */
-@media (max-width: 1024px) and (min-width: 300px) {
-  .tempHide{
-    display: none;
-  }
-}
-@media (max-width: 416px) {
-  .boxes {
-    height: 81vmin;
-    width: 81vmin;
-    grid-template-columns: repeat(3, 27vmin);
-  }
-  .btn {
-    height: 27vmin;
-    width: 27vmin;
-    font-size: 16vmin;
-  }
-  .container {
-    height: 72vmax;
-    margin-top: 12vmax;
-  }
-  footer {
-    height: 6vmax;
-  }
-}
-
 @media (max-width: 300px) {
   .container {
-    flex-wrap: wrap;
+    height: 85vmax;
+    width: 100vw;
+    display: flex;
+    gap: 7vmax;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   #resetGame {
+    height: 11vmin;
+    width: 52vmin;
+    font-size: 6vmin;
+    border-radius: 7vmin;
+  }
+
+  #newGame {
     height: 11vmin;
     width: 52vmin;
     font-size: 6vmin;
@@ -210,6 +202,91 @@ footer {
   }
 }
 
+@media (max-width: 450px) and (min-width: 300px) {
+  .container {
+    height: 95vmax;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #resetGame {
+    height: 9vmin;
+    font-size: 5vmin;
+  }
+
+  #newGame {
+    height: 9vmin;
+    font-size: 5vmin;
+  }
+
+  #gameResp {
+    font-size: 7vmin;
+  }
+}
+
+@media (max-width: 500px) and (min-width: 450px) {
+  .boxes {
+    height: 45vmin;
+    width: 45vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 15vmin);
+  }
+  .btn {
+    height: 15vmin;
+    width: 15vmin;
+    font-size: 10vmin;
+  }
+  .container {
+    height: 108vmin;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #resetGame {
+    height: 6.5vmin;
+    width: 36vmin;
+    font-size: 3.5vmin;
+    border-radius: 5vmin;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 820px) and (min-width: 500px) {
+  .navBar{
+    height: 12vmin;
+  }
+  .container {
+    height: 95vmin;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .boxes {
+    height: 45vmin;
+    width: 45vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 15vmin);
+  }
+  .btn {
+    height: 15vmin;
+    width: 15vmin;
+    font-size: 10vmin;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 300px) {
+  .tempHide {
+    display: none;
+  }
+}
 /* animation */
 .pop {
   animation: popUp 1s ease-in-out;
@@ -225,4 +302,3 @@ footer {
     transform: scale(1);
   }
 }
-
