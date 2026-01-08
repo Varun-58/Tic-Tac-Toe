@@ -14,14 +14,6 @@ body {
   display: none;
 }
 
-/* .x-text {
-  color: #1d4ed8;
-}
-
-.o-text {
-  color: #b91c1c;
-} */
-
 /* nav */
 .navBar {
   height: 16vmin;
@@ -54,7 +46,6 @@ body {
   width: 60vmin;
   display: grid;
   grid-template-columns: repeat(3, 20vmin);
-
   position: relative;
 }
 
@@ -80,7 +71,6 @@ body {
   width: 20vmin;
   font-size: 13vmin;
   cursor: pointer;
-
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -356,3 +346,4 @@ body {
     border-radius: 12vmin;
   }
 }
+
