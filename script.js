@@ -53,6 +53,10 @@ newGameBtn.addEventListener("click", () => {
 //gameBtn sound
 btn.forEach((box) => {
   box.addEventListener("click", () => {
+    box.classList.remove("btnBounce");
+    box.offsetWidth;
+    box.classList.add("btnBounce");
+    
     clickMusic.currentTime = 0;
     clickMusic.play();
   });
