@@ -80,7 +80,7 @@ body {
   width: 20vmin;
   font-size: 13vmin;
   cursor: pointer;
-  
+
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -269,8 +269,7 @@ body {
   border: 0.3vmin solid var(--line);
 }
 
-.btn:hover:not(:disabled),
-.btn:active:not(:disabled) {
+.btnHover {
   background-color: var(--bh);
   opacity: 0.2;
 }
@@ -357,4 +356,3 @@ body {
     border-radius: 12vmin;
   }
 }
-
