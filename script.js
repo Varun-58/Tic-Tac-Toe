@@ -53,19 +53,34 @@ newGameBtn.addEventListener("click", () => {
 //gameBtn sound
 btn.forEach((box) => {
   box.addEventListener("click", () => {
-    box.classList.remove("btnBounce");
-    box.offsetWidth;
-    box.classList.add("btnBounce");
-    
     clickMusic.currentTime = 0;
     clickMusic.play();
   });
+});
+
+//gameBtn animation
+for (let box of btn) {
+  box.addEventListener("click", () => {
+    box.classList.remove("btnBounce");
+    box.offsetWidth;
+    box.classList.add("btnBounce");
+  });
   box.addEventListener("animationend", (e) => {
-    if(e.animatoinName === "spring02"){
+    if (e.animatoinName === "spring02") {
       box.disabled = true;
     }
-  })
-});
+  });
+
+  box.addEventListener("pointerdown", () => {
+    box.classList.add("btnHover");
+  });
+  box.addEventListener("pointerup", () => {
+    box.classList.remove("btnHover");
+  });
+  box.addEventListener("pointerleave", () => {
+    box.classList.remove("btnHover");
+  });
+}
 
 //game logic declerations
 let winningPatterns = [
@@ -261,4 +276,3 @@ themeBtn.addEventListener("click", () => {
   clickMusic.currentTime = 0;
   clickMusic.play();
 });
-
