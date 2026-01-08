@@ -80,6 +80,9 @@ body {
   width: 20vmin;
   font-size: 13vmin;
   cursor: pointer;
+  
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* container-right */
@@ -354,3 +357,4 @@ body {
     border-radius: 12vmin;
   }
 }
+
