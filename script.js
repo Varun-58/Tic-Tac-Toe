@@ -60,6 +60,11 @@ btn.forEach((box) => {
     clickMusic.currentTime = 0;
     clickMusic.play();
   });
+  box.addEventListener("animationend", (e) => {
+    if(e.animatoinName === "spring02"){
+      box.disabled = true;
+    }
+  })
 });
 
 //game logic declerations
@@ -256,3 +261,4 @@ themeBtn.addEventListener("click", () => {
   clickMusic.currentTime = 0;
   clickMusic.play();
 });
+
